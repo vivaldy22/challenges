@@ -1,14 +1,12 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import MyCard from "./components/card/MyCard";
+import Header from "./components/header/Header";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header" style={{ height: "10px" }}>
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      <Header />
       <MyCard />
     </div>
   );
