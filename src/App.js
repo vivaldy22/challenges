@@ -5,28 +5,26 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: "red",
+      color: "",
       text: "",
     };
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        color: "yellow",
-        text: "The updated color is yellow",
-      });
-    }, 2000);
+    this.setState({
+      color: "red",
+      text: "The updated color is red",
+    });
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     setTimeout(() => {
+      const isYellow = this.state.color === "yellow";
       this.setState({
-        color: this.state.color === "yellow" ? "red" : "yellow",
-        text:
-          this.state.color === "yellow"
-            ? "The updated color is red"
-            : "The updated color is yellow",
+        color: isYellow ? "red" : "yellow",
+        text: isYellow
+          ? "The updated color is red"
+          : "The updated color is yellow",
       });
     }, 2000);
   }
