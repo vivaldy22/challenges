@@ -13,7 +13,6 @@ class App extends React.Component {
   componentDidMount() {
     this.setState({
       color: "red",
-      text: "The updated color is red",
     });
   }
 
