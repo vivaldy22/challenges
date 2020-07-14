@@ -7,12 +7,14 @@
     border: 2px solid lightGrey;
 }
 
-.button1Style {
-    margin-top: 5px;
-    background-color: yellow;
+.black {
+    color: black;
 }
 
-.button2Style {
-    margin-top: 5px;
-    background-color: blue;
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
 }
