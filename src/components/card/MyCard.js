@@ -3,15 +3,12 @@ import "./style.css";
 
 class MyCard extends Component {
   render() {
-    const myCard = "myCard";
-    const button1Style = "button1Style";
-    const button2Style = "button2Style";
-
+    let { number } = this.props;
     return (
-      <div className={myCard}>
+      <div className="myCard">
         <div>
-          <button className={button1Style}>-</button>
-          <button className={button2Style}>+</button>
+          <h1>Angka didapat:</h1>
+          <p>{number}</p>
         </div>
       </div>
     );
