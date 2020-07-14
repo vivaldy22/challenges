@@ -1,0 +1,18 @@
+.myCard {
+    margin: 10px auto 0;
+    box-shadow: 40px 40px 50px 5px grey;
+    width: 300px;
+    min-height: 350px;
+    border-radius: 10px;
+    border: 2px solid lightGrey;
+}
+
+.button1Style {
+    margin-top: 5px;
+    background-color: yellow;
+}
+
+.button2Style {
+    margin-top: 5px;
+    background-color: blue;
+}
