@@ -1,8 +1,9 @@
 .myCard {
-    margin: 10px auto 50px;
-    box-shadow: 40px 40px 50px 5px grey;
+    margin: 25px;
+    /*margin: 0;*/
+    box-shadow: 20px 20px 20px gray;
     width: 200px;
-    min-height: 200px;
+    min-height: 250px;
     border-radius: 10px;
     border: 2px solid lightGrey;
 }

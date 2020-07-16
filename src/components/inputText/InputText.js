@@ -8,14 +8,18 @@ class InputText extends Component {
     };
   }
   render() {
-    const { onTextChange } = this.props;
+    const { onTextChange, placeholder, type, name } = this.props;
     return (
-      <input
-        onChange={(event) => {
-          onTextChange(event);
-        }}
-        type="text"
-      />
+      <div>
+        <input
+          onChange={(event) => {
+            onTextChange(event);
+          }}
+          type={type}
+          placeholder={placeholder}
+          name={name}
+        />
+      </div>
     );
   }
 }
