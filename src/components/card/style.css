@@ -1,19 +1,4 @@
-.myCard {
-    margin: 25px;
-    /*margin: 0;*/
-    box-shadow: 20px 20px 20px gray;
-    width: 200px;
-    min-height: 250px;
-    border-radius: 10px;
-    border: 2px solid lightGrey;
-}
-
-.button1Style {
-    margin-top: 5px;
-    background-color: yellow;
-}
-
-.button2Style {
-    margin-top: 5px;
-    background-color: blue;
+.root {
+    min-width: 255px;
+    margin: 15px 7px 30px 8px;
 }

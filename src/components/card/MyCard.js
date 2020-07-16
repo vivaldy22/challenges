@@ -1,20 +1,36 @@
 import React, { Component } from "react";
 import "./style.css";
-import Button from "../button/Button";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+} from "@material-ui/core";
 
 class MyCard extends Component {
   render() {
     let { name, address, age, email, onRmvBtnClick } = this.props.data;
     return (
-      <div className="myCard">
-        <div>
-          <h2>{name}</h2>
-          <p>{address}</p>
-          <p>{age}</p>
-          <p>{email}</p>
-        </div>
-        <Button onClick={onRmvBtnClick} text="Remove" />
-      </div>
+      <Card className="root" variant="outlined">
+        <CardContent>
+          <Typography variant="h5" component="h2">
+            {name}
+          </Typography>
+          <Typography color="textSecondary">{age} years old</Typography>
+          <Typography variant="body2" component="p">
+            {address}
+          </Typography>
+          <Typography variant="body2" component="p">
+            {email}
+          </Typography>
+        </CardContent>
+        <CardActions style={{ justifyContent: "center" }}>
+          <Button onClick={onRmvBtnClick} color="secondary">
+            Remove
+          </Button>
+        </CardActions>
+      </Card>
     );
   }
 }
