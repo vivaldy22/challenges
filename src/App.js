@@ -42,7 +42,7 @@ class App extends Component {
           age === 0 ||
           email === ""
         ) {
-          alert("All field must be field");
+          alert("All field must be filled");
           return false;
         }
         return true;
