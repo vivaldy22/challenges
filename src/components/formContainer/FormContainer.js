@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 class FormContainer extends Component {
   render() {
     const { onTxtChange, onSubmitBtnClick } = this.props;
+
     return (
       <div>
         <InputText
@@ -31,7 +32,7 @@ class FormContainer extends Component {
           type="email"
           name="email"
         />
-        <div style={{ marginTop: "10px" }}>
+        <div className="button-submit">
           <Button onClick={onSubmitBtnClick} color="primary">
             Submit
           </Button>

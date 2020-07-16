@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import "./css/style.css";
 import Header from "./components/header/Header";
 import FormContainer from "./components/formContainer/FormContainer";
 import CardContainer from "./components/cardContainer/CardContainer";
@@ -89,11 +90,26 @@ class App extends Component {
     }
   };
 
+  onRmvBtnClick = (id) => {
+    this.state.cards.forEach((card, i) => {
+      if (this.state.cards[i].id === id) {
+        this.state.cards.splice(i, 1);
+      }
+    });
+
+    this.setState({
+      cards: this.state.cards,
+    });
+  };
+
   render() {
     return (
       <div className="App">
         <Header />
-        <CardContainer cards={this.state.cards} />
+        <CardContainer
+          cards={this.state.cards}
+          onRmvBtnClick={this.onRmvBtnClick}
+        />
         <FormContainer
           onTxtChange={this.handleTxtInputChange}
           onSubmitBtnClick={this.handleSubmitBtnClick}

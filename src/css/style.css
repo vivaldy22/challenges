@@ -1,0 +1,22 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.button-submit {
+    margin-top: 10px;
+}
+
+.input-text {
+    margin-top: 10px;
+}
+
+.card-remove-button {
+    justify-content: center;
+}
+
+.root {
+    min-width: 255px;
+    margin: 15px 7px 30px 8px;
+}

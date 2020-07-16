@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./style.css";
 import {
   Card,
   CardActions,
@@ -10,7 +9,9 @@ import {
 
 class MyCard extends Component {
   render() {
-    let { name, address, age, email, onRmvBtnClick } = this.props.data;
+    const { id, name, address, age, email } = this.props.data;
+    const { onRmvBtnClick } = this.props;
+
     return (
       <Card className="root" variant="outlined">
         <CardContent>
@@ -25,8 +26,8 @@ class MyCard extends Component {
             {email}
           </Typography>
         </CardContent>
-        <CardActions style={{ justifyContent: "center" }}>
-          <Button onClick={onRmvBtnClick} color="secondary">
+        <CardActions className="card-remove-button">
+          <Button onClick={() => onRmvBtnClick(id)} color="secondary">
             Remove
           </Button>
         </CardActions>
