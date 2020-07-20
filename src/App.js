@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import "./css/style.css";
 import MyHeader from "./components/MyHeader";
-import HomePage from "./pages/home/HomePage";
-import GoodsPage from "./pages/goods/GoodsPage";
-import WarehousePage from "./pages/warehouse/WarehousePage";
+import HomePage from "./views/home/HomePage";
+import GoodsPage from "./views/goods/GoodsPage";
+import WarehousePage from "./views/warehouse/WarehousePage";
 
 class App extends Component {
   constructor(props) {

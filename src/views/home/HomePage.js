@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Header, Button, Icon, Segment } from "semantic-ui-react";
 
-const HomePage = () => {
-  const { onArrowBtnClick } = this.props;
+const HomePage = (props) => {
+  const { onArrowBtnClick } = props;
 
   return (
     <Segment textAlign="center" style={{ padding: "1em 0em" }} vertical>
