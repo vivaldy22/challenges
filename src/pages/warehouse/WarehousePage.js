@@ -30,61 +30,37 @@ class WarehousePage extends Component {
 
   render() {
     const { isLoaded, warehouses } = this.state;
-    const showGoods = (
-      <Segment>
-        <Table striped>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>No.</Table.HeaderCell>
-              <Table.HeaderCell>Warehouse Name</Table.HeaderCell>
-              <Table.HeaderCell>Warehouse Type</Table.HeaderCell>
-              <Table.HeaderCell>Location</Table.HeaderCell>
-              <Table.HeaderCell>Capacity</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+    const showWarehouses = (
+      <Table celled selectable striped>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>No.</Table.HeaderCell>
+            <Table.HeaderCell>Warehouse Name</Table.HeaderCell>
+            <Table.HeaderCell>Warehouse Type</Table.HeaderCell>
+            <Table.HeaderCell>Location</Table.HeaderCell>
+            <Table.HeaderCell>Capacity</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
 
-          <Table.Body>
-            {warehouses.map((item, index) => (
-              <Table.Row key={item.id}>
-                <Table.Cell>{index + 1}</Table.Cell>
-                <Table.Cell>{item.name}</Table.Cell>
-                <Table.Cell>{item.type}</Table.Cell>
-                <Table.Cell>{item.location}</Table.Cell>
-                <Table.Cell>{item.capacity}</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
-      </Segment>
+        <Table.Body>
+          {warehouses.map((item, index) => (
+            <Table.Row key={item.id}>
+              <Table.Cell>{index + 1}</Table.Cell>
+              <Table.Cell>{item.name}</Table.Cell>
+              <Table.Cell>{item.type}</Table.Cell>
+              <Table.Cell>{item.location}</Table.Cell>
+              <Table.Cell>{item.capacity}</Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
     );
 
     if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      return showGoods;
+      return showWarehouses;
     }
-    return (
-      <Segment>
-        <Table striped>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Warehouse Name</Table.HeaderCell>
-              <Table.HeaderCell>Warehouse Type</Table.HeaderCell>
-              <Table.HeaderCell>Location</Table.HeaderCell>
-              <Table.HeaderCell>Capacity</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell>Gudang Dry</Table.Cell>
-              <Table.Cell>Dry</Table.Cell>
-              <Table.Cell>Bandung</Table.Cell>
-              <Table.Cell>2</Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        </Table>
-      </Segment>
-    );
   }
 }
 

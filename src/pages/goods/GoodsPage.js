@@ -31,27 +31,24 @@ class GoodsPage extends Component {
   render() {
     const { isLoaded, goods } = this.state;
     const showGoods = (
-      <Segment>
-        <Table striped>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>No.</Table.HeaderCell>
-              <Table.HeaderCell>Good's Name</Table.HeaderCell>
-              <Table.HeaderCell>Type</Table.HeaderCell>
+      <Table celled selectable striped>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>No.</Table.HeaderCell>
+            <Table.HeaderCell>Good's Name</Table.HeaderCell>
+            <Table.HeaderCell>Type</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {goods.map((item, index) => (
+            <Table.Row key={item.id}>
+              <Table.Cell>{index + 1}</Table.Cell>
+              <Table.Cell>{item.name}</Table.Cell>
+              <Table.Cell>{item.type}</Table.Cell>
             </Table.Row>
-          </Table.Header>
-
-          <Table.Body>
-            {goods.map((item, index) => (
-              <Table.Row key={item.id}>
-                <Table.Cell>{index + 1}</Table.Cell>
-                <Table.Cell>{item.name}</Table.Cell>
-                <Table.Cell>{item.type}</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
-      </Segment>
+          ))}
+        </Table.Body>
+      </Table>
     );
 
     if (!isLoaded) {

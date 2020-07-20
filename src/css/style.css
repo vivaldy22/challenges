@@ -12,15 +12,9 @@ body, html {
 }
 
 .home-container {
-    background-color: rgba(255,255,255,1);
+    background-color: rgb(255, 255, 255);
     margin-top: 10em;
     height: 300px;
     padding: 30px;
     border-radius: 7px;
 }
-
-/*@media only screen and (max-width: 645px) {*/
-/*    .background-image {*/
-/*        justify-content: center !important;*/
-/*    }*/
-/*}*/
