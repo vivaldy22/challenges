@@ -18,3 +18,9 @@ body, html {
     padding: 30px;
     border-radius: 7px;
 }
+
+.table-container {
+    padding-left: 30vh;
+    padding-right: 30vh;
+    padding-top: 20vh;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Segment } from "semantic-ui-react";
+import { Table } from "semantic-ui-react";
 import { getGoods } from "../../api/Goods";
 
 class GoodsPage extends Component {
@@ -31,24 +31,26 @@ class GoodsPage extends Component {
   render() {
     const { isLoaded, goods } = this.state;
     const showGoods = (
-      <Table celled selectable striped>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>No.</Table.HeaderCell>
-            <Table.HeaderCell>Good's Name</Table.HeaderCell>
-            <Table.HeaderCell>Type</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {goods.map((item, index) => (
-            <Table.Row key={item.id}>
-              <Table.Cell>{index + 1}</Table.Cell>
-              <Table.Cell>{item.name}</Table.Cell>
-              <Table.Cell>{item.type}</Table.Cell>
+      <div className="table-container">
+        <Table celled selectable striped>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>No.</Table.HeaderCell>
+              <Table.HeaderCell>Good's Name</Table.HeaderCell>
+              <Table.HeaderCell>Type</Table.HeaderCell>
             </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
+          </Table.Header>
+          <Table.Body>
+            {goods.map((item, index) => (
+              <Table.Row key={item.id}>
+                <Table.Cell>{index + 1}</Table.Cell>
+                <Table.Cell>{item.name}</Table.Cell>
+                <Table.Cell>{item.type}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </div>
     );
 
     if (!isLoaded) {
