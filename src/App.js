@@ -37,7 +37,7 @@ class App extends Component {
     };
 
     return (
-      <div className="App">
+      <div className="background-image">
         <MyHeader
           activeMenu={this.state.activeMenu}
           onMenuClick={this.handleMenuClick}

@@ -6,7 +6,7 @@ class HomePage extends Component {
     const { onArrowBtnClick } = this.props;
     return (
       <Segment textAlign="center" style={{ padding: "1em 0em" }} vertical>
-        <Container text>
+        <Container text className="home-container">
           <Header
             as="h1"
             content="Welcome to Goods and Warehouse Management App"
@@ -14,7 +14,7 @@ class HomePage extends Component {
               fontSize: "3em",
               fontWeight: "normal",
               marginBottom: 0,
-              marginTop: "3.5em",
+              // marginTop: "3.5em",
             }}
           />
           <Header
