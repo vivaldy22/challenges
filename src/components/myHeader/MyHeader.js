@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Menu, Image, Icon } from "semantic-ui-react";
 import logo from "../../img/icon.png";
 
-class Header extends Component {
+class MyHeader extends Component {
   render() {
     const { activeMenu, onMenuClick } = this.props;
     return (
@@ -38,7 +38,7 @@ class Header extends Component {
           <Menu.Menu position="right">
             <Menu.Item
               name="login"
-              active={activeMenu === "login"}
+              // active={activeMenu === "login"}
               onClick={onMenuClick}
             >
               <Icon name="sign-in" />
@@ -51,4 +51,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default MyHeader;

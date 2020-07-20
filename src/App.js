@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "./css/style.css";
-import Header from "./components/header/Header";
+import MyHeader from "./components/myHeader/MyHeader";
 import HomePage from "./pages/home/HomePage";
 import GoodsPage from "./pages/goods/GoodsPage";
 import WarehousePage from "./pages/warehouse/WarehousePage";
@@ -38,7 +38,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header
+        <MyHeader
           activeMenu={this.state.activeMenu}
           onMenuClick={this.handleMenuClick}
         />

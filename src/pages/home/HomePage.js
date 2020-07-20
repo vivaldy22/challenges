@@ -14,7 +14,7 @@ class HomePage extends Component {
               fontSize: "3em",
               fontWeight: "normal",
               marginBottom: 0,
-              marginTop: "3em",
+              marginTop: "3.5em",
             }}
           />
           <Header
