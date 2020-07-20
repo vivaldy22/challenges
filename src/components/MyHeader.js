@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Menu, Image, Icon } from "semantic-ui-react";
-import logo from "../../img/icon.png";
+import logo from "../img/icon.png";
 
 class MyHeader extends Component {
   render() {

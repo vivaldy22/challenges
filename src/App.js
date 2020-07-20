@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "./css/style.css";
-import MyHeader from "./components/myHeader/MyHeader";
+import MyHeader from "./components/MyHeader";
 import HomePage from "./pages/home/HomePage";
 import GoodsPage from "./pages/goods/GoodsPage";
 import WarehousePage from "./pages/warehouse/WarehousePage";
