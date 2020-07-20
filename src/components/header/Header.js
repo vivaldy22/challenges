@@ -1,12 +1,52 @@
 import React, { Component } from "react";
-import logo from "../../logo.svg";
+import { Menu, Image, Icon } from "semantic-ui-react";
+import logo from "../../img/icon.png";
 
 class Header extends Component {
   render() {
+    const { activeMenu, onMenuClick } = this.props;
     return (
-      <header className="App-header" style={{ height: "10px" }}>
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      <div>
+        <Menu pointing color="brown">
+          <Menu.Item>
+            <Image size="mini" src={logo} />
+          </Menu.Item>
+          <Menu.Item
+            name="home"
+            active={activeMenu === "home"}
+            onClick={onMenuClick}
+          >
+            <Icon name="home" />
+            Home
+          </Menu.Item>
+          <Menu.Item
+            name="goods"
+            active={activeMenu === "goods"}
+            onClick={onMenuClick}
+          >
+            <Icon name="sticky note outline" />
+            Goods
+          </Menu.Item>
+          <Menu.Item
+            name="warehouse"
+            active={activeMenu === "warehouse"}
+            onClick={onMenuClick}
+          >
+            <Icon name="warehouse" />
+            Warehouse
+          </Menu.Item>
+          <Menu.Menu position="right">
+            <Menu.Item
+              name="login"
+              active={activeMenu === "login"}
+              onClick={onMenuClick}
+            >
+              <Icon name="sign-in" />
+              Login
+            </Menu.Item>
+          </Menu.Menu>
+        </Menu>
+      </div>
     );
   }
 }
