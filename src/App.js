@@ -5,9 +5,11 @@ import MyHeader from "./components/MyHeader";
 import HomePage from "./views/home/HomePage";
 import GoodsPage from "./views/goods/GoodsPage";
 import WarehousePage from "./views/warehouse/WarehousePage";
+import Nav from "./containers/Nav/Nav";
+import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
-  constructor(props) {
+  /*constructor(props) {
     super(props);
     this.state = {
       activeMenu: "home",
@@ -20,10 +22,10 @@ class App extends Component {
     });
   };
 
-  handleMenuClick = (e, { name }) => this.setState({ activeMenu: name });
+  handleMenuClick = (e, { name }) => this.setState({ activeMenu: name });*/
 
   render() {
-    const showMenu = () => {
+    /*const showMenu = () => {
       switch (this.state.activeMenu) {
         case "home":
           return <HomePage onArrowBtnClick={this.handleMenuClick} />;
@@ -34,15 +36,20 @@ class App extends Component {
         default:
           return <HomePage />;
       }
-    };
+    };*/
 
     return (
-      <div className="background-image">
+      /*<div className="background-image">
         <MyHeader
           activeMenu={this.state.activeMenu}
           onMenuClick={this.handleMenuClick}
         />
         {showMenu()}
+      </div>*/
+      <div>
+        <BrowserRouter>
+          <Nav />
+        </BrowserRouter>
       </div>
     );
   }
