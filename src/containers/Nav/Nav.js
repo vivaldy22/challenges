@@ -11,12 +11,13 @@ import HomePage from "../../views/home/HomePage";
 import GoodsPage from "../../views/goods/GoodsPage";
 import WarehousePage from "../../views/warehouse/WarehousePage";
 import NotFound from "../../components/NotFound";
+import TestingPage from "../../views/testing/TestingPage";
 
 const routes = [
   { id: 1, path: "/home", component: HomePage },
   { id: 2, path: "/goods", component: GoodsPage },
   { id: 3, path: "/warehouses", component: WarehousePage },
-  { id: 4, path: "/testing", component: WarehousePage },
+  { id: 4, path: "/testing", component: TestingPage },
 ];
 
 class Nav extends Component {

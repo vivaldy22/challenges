@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Header, Table } from "semantic-ui-react";
+import { Button, Header, Table } from "semantic-ui-react";
 import { getGoods } from "../../api/Goods";
+import TableContent from "./TableContent";
 
 class GoodsPage extends Component {
   constructor(props) {
@@ -28,48 +29,49 @@ class GoodsPage extends Component {
     this.getGoodsData();
   };
 
+  handleSaveClick = (id, data) => {
+    this.state.goods.forEach((each, i) => {
+      if (each.id === id) {
+        this.state.goods.splice(i, 1, data);
+      }
+    });
+
+    this.setState({
+      goods: this.state.goods,
+    });
+  };
+
   render() {
     const { isLoaded, goods } = this.state;
-    const showGoods = (
-      <div>
-        <Header
-          as="h1"
-          content="Welcome to Goods and Warehouse Management App"
-          style={
-            {
-              //   fontSize: "3em",
-              //   fontWeight: "normal",
-              //   marginBottom: 0,
-              //   marginTop: "3em",
-              //   textAlign: "center",
-              //   display: "flex",
-              //   alignSelf: "center",
-              //   backgroundColor: "white",
-              //   width: "500px",
-            }
-          }
-          className="header-table"
+    const showTableContent = goods.map((good, i) => {
+      return (
+        <TableContent
+          key={i}
+          index={i}
+          item={good}
+          onSaveClick={this.handleSaveClick}
         />
-        <div className="table-container">
-          <Table celled selectable striped>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>No.</Table.HeaderCell>
-                <Table.HeaderCell>Good's Name</Table.HeaderCell>
-                <Table.HeaderCell>Type</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {goods.map((item, index) => (
-                <Table.Row key={item.id}>
-                  <Table.Cell>{index + 1}</Table.Cell>
-                  <Table.Cell>{item.name}</Table.Cell>
-                  <Table.Cell>{item.type}</Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table>
-        </div>
+      );
+    });
+
+    const showGoods = (
+      <div className="table-container">
+        <Table celled selectable striped>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell colSpan="4" textAlign={"center"}>
+                Goods Table
+              </Table.HeaderCell>
+            </Table.Row>
+            <Table.Row>
+              <Table.HeaderCell className="table-no">No.</Table.HeaderCell>
+              <Table.HeaderCell>Good's Name</Table.HeaderCell>
+              <Table.HeaderCell>Type</Table.HeaderCell>
+              <Table.HeaderCell>Actions</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>{showTableContent}</Table.Body>
+        </Table>
       </div>
     );
 

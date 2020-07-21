@@ -35,7 +35,12 @@ class WarehousePage extends Component {
         <Table celled selectable striped>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>No.</Table.HeaderCell>
+              <Table.HeaderCell colSpan="5" textAlign={"center"}>
+                Warehouse Table
+              </Table.HeaderCell>
+            </Table.Row>
+            <Table.Row>
+              <Table.HeaderCell className="table-no">No.</Table.HeaderCell>
               <Table.HeaderCell>Warehouse Name</Table.HeaderCell>
               <Table.HeaderCell>Warehouse Type</Table.HeaderCell>
               <Table.HeaderCell>Location</Table.HeaderCell>

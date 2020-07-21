@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
 import { getWarehouses } from "../../api/Warehouse";
 
-class Testing extends Component {
+class TestingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +35,12 @@ class Testing extends Component {
         <Table celled selectable striped>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>No.</Table.HeaderCell>
+              <Table.HeaderCell colSpan="5" textAlign={"center"}>
+                Testing Table
+              </Table.HeaderCell>
+            </Table.Row>
+            <Table.Row>
+              <Table.HeaderCell className="table-no">No.</Table.HeaderCell>
               <Table.HeaderCell>Warehouse Name</Table.HeaderCell>
               <Table.HeaderCell>Warehouse Type</Table.HeaderCell>
               <Table.HeaderCell>Location</Table.HeaderCell>
@@ -66,4 +71,4 @@ class Testing extends Component {
   }
 }
 
-export default Testing;
+export default TestingPage;
