@@ -71,7 +71,6 @@ class Nav extends Component {
         />
         <Switch>
           <Route path="/" exact />
-
           {routeList}
           <Route
             render={(props) => {
