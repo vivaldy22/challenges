@@ -10,6 +10,7 @@ import MyHeader from "../../components/MyHeader";
 import HomePage from "../../views/home/HomePage";
 import GoodsPage from "../../views/goods/GoodsPage";
 import WarehousePage from "../../views/warehouse/WarehousePage";
+import NotFound from "../../components/NotFound";
 
 const routes = [
   { id: 1, path: "/home", component: HomePage },
@@ -73,8 +74,9 @@ class Nav extends Component {
           <Route path="/" exact />
           {routeList}
           <Route
+            path="*"
             render={(props) => {
-              return <h1>404</h1>;
+              return <NotFound />;
             }}
           />
         </Switch>

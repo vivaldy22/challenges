@@ -22,5 +22,17 @@ body, html {
 .table-container {
     padding-left: 30vh;
     padding-right: 30vh;
-    padding-top: 20vh;
+    /*padding-top: 20vh;*/
+}
+
+.header-table {
+    font-size: 3em !important;
+    font-weight: normal !important;
+    margin-bottom: 0 !important;
+    margin-top: 3em !important;
+    background-color: white !important;
+    /*width: 700px !important;*/
+    text-align: center !important;
+    margin-left: 200px !important;
+    margin-right: 200px !important;
 }
