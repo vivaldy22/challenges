@@ -15,18 +15,24 @@ const MyHeader = (props) => {
           <Icon name="home" />
           Home
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/goods" name="goods">
-          <Icon name="sticky note outline" />
-          Goods
-        </Menu.Item>
-        <Menu.Item as={NavLink} to="/warehouses" name="warehouses">
-          <Icon name="warehouse" />
-          Warehouse
-        </Menu.Item>
-        <Menu.Item as={NavLink} to="/testing" name="testing">
-          <Icon name="telegram" />
-          Testing Menu
-        </Menu.Item>
+        {auth ? (
+          <>
+            <Menu.Item as={NavLink} to="/goods" name="goods">
+              <Icon name="sticky note outline" />
+              Goods
+            </Menu.Item>
+            <Menu.Item as={NavLink} to="/warehouses" name="warehouses">
+              <Icon name="warehouse" />
+              Warehouse
+            </Menu.Item>
+            <Menu.Item as={NavLink} to="/testing" name="testing">
+              <Icon name="telegram" />
+              Testing Menu
+            </Menu.Item>
+          </>
+        ) : (
+          <></>
+        )}
         <Menu.Menu position="right">
           <Menu.Item
             name={auth ? "logout" : "login"}
