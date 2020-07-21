@@ -5,7 +5,7 @@ const DetailGoods = (props) => {
   const { name, type, button } = props;
 
   return (
-    <Modal trigger={button}>
+    <Modal trigger={button} closeIcon>
       <Modal.Header>Goods Data</Modal.Header>
       <Modal.Content>
         <Modal.Description>

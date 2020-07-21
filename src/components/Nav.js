@@ -6,12 +6,12 @@ import {
   Switch,
   withRouter,
 } from "react-router-dom";
-import MyHeader from "../../components/MyHeader";
-import HomePage from "../../views/home/HomePage";
-import GoodsPage from "../../views/goods/GoodsPage";
-import WarehousePage from "../../views/warehouse/WarehousePage";
-import NotFound from "../../components/NotFound";
-import TestingPage from "../../views/testing/TestingPage";
+import MyHeader from "./MyHeader";
+import HomePage from "../views/home/HomePage";
+import GoodsPage from "../views/goods/GoodsPage";
+import WarehousePage from "../views/warehouse/WarehousePage";
+import NotFound from "./NotFound";
+import TestingPage from "../views/testing/TestingPage";
 
 const routes = [
   { id: 1, path: "/home", component: HomePage },

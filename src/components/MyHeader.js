@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu, Image, Icon } from "semantic-ui-react";
-import logo from "../img/icon.png";
+import logo from "../assets/img/icon.png";
 import { NavLink } from "react-router-dom";
 
 const MyHeader = (props) => {
