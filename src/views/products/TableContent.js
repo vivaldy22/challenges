@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button, Input, Table, Dropdown } from "semantic-ui-react";
-import { getTypes } from "../../api/Type";
 import DetailProducts from "./DetailProducts";
 
 class TableContent extends Component {
@@ -17,21 +16,7 @@ class TableContent extends Component {
     };
   }
 
-  componentDidMount() {
-    getTypes()
-      .then((types) => {
-        this.setState({
-          isLoaded: true,
-          types,
-        });
-      })
-      .catch((error) => {
-        this.setState({
-          error,
-        });
-        console.log(error);
-      });
-  }
+  componentDidMount() {}
 
   handleChange = (e) => {
     this.setState({
