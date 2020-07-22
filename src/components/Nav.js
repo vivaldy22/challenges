@@ -10,6 +10,7 @@ import MyHeader from "./MyHeader";
 import HomePage from "../views/home/HomePage";
 import ProductsPage from "../views/products/ProductsPage";
 import NotFound from "./NotFound";
+import LoginPage from "../views/login/LoginPage";
 
 const routes = [
   { id: 1, path: "/home", component: HomePage },
@@ -61,14 +62,16 @@ class Nav extends Component {
     });
 
     return (
-      <div className="background-image">
-        <MyHeader
-          onLogin={this.onLogin}
-          onLogout={this.onLogout}
-          auth={this.state.auth}
-        />
+      <div className="background-image-home">
+        <MyHeader onLogout={this.onLogout} auth={this.state.auth} />
         <Switch>
-          <Route path="/" exact />
+          <Route
+            path="/"
+            exact
+            render={(props) => {
+              return <LoginPage onLogin={this.onLogin} />;
+            }}
+          />
           {routeList}
           <Route
             path="*"

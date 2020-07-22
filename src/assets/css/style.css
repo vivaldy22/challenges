@@ -3,7 +3,7 @@ body, html {
     margin: 0;
 }
 
-.background-image {
+.background-image-home {
     background-image: url("../img/background.jpg");
     height: 100vh;
     background-position: center;
