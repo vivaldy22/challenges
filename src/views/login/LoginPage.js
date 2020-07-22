@@ -118,6 +118,7 @@ class LoginPage extends Component {
           <label>Email address or Username</label>
           <InputText
             onTextChange={this.handleChange}
+            value={this.state.email}
             placeholder="Your email or username"
             type="text"
             name="email"
@@ -126,6 +127,7 @@ class LoginPage extends Component {
           <label style={{ marginTop: "10px" }}>Password</label>
           <InputText
             onTextChange={this.handleChange}
+            value={this.state.password}
             placeholder="Your password"
             type="password"
             name="password"

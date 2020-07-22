@@ -3,7 +3,7 @@ import { TextField } from "@material-ui/core";
 
 class InputText extends Component {
   render() {
-    const { onTextChange, placeholder, type, name, valid } = this.props;
+    const { onTextChange, placeholder, type, name, valid, value } = this.props;
     return (
       <div className="input-text">
         <TextField
@@ -24,6 +24,7 @@ class InputText extends Component {
           }}
           type={type}
           placeholder={placeholder}
+          value={value}
           name={name}
           size="small"
           style={{ width: "350px" }}
