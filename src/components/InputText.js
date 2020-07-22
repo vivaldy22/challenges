@@ -3,7 +3,15 @@ import { TextField } from "@material-ui/core";
 
 class InputText extends Component {
   render() {
-    const { onTextChange, placeholder, type, name, valid, value } = this.props;
+    const {
+      onTextChange,
+      onKeyPress,
+      placeholder,
+      type,
+      name,
+      valid,
+      value,
+    } = this.props;
     return (
       <div className="input-text">
         <TextField
@@ -19,9 +27,8 @@ class InputText extends Component {
           }
           variant="outlined"
           label={placeholder}
-          onChange={(event) => {
-            onTextChange(event);
-          }}
+          onChange={onTextChange}
+          onKeyPress={onKeyPress}
           type={type}
           placeholder={placeholder}
           value={value}

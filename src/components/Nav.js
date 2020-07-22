@@ -23,12 +23,14 @@ class Nav extends Component {
     super(props);
     this.state = {
       auth: false,
+      token: "",
     };
   }
 
   onLogin = () => {
     this.setState({
       auth: true,
+      token: sessionStorage.getItem("token"),
     });
     this.props.history.push({
       pathname: "/home",
@@ -38,6 +40,7 @@ class Nav extends Component {
   onLogout = () => {
     this.setState({
       auth: false,
+      token: "",
     });
     this.props.history.push({
       pathname: "/",
@@ -63,7 +66,11 @@ class Nav extends Component {
 
     return (
       <div className="background-image-home">
-        <MyHeader onLogout={this.onLogout} auth={this.state.auth} />
+        <MyHeader
+          onLogout={this.onLogout}
+          auth={this.state.auth}
+          token={this.state.token}
+        />
         <Switch>
           <Route
             path="/"

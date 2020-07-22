@@ -7,6 +7,8 @@ import {
   Checkbox,
   Typography,
   Link,
+  FormControl,
+  InputLabel,
 } from "@material-ui/core";
 import { getAuth } from "../../api/Auth";
 
@@ -47,7 +49,7 @@ class LoginPage extends Component {
   };
 
   isEmailValid = () => {
-    const { email } = this.state;
+    // const { email } = this.state;
     // return email.match(regexEmail);
     return true;
   };
@@ -92,13 +94,19 @@ class LoginPage extends Component {
         });
       }
     } else {
-      // this.setState({
-      //   isEmailValid: false,
-      //   isPasswordValid: false,
-      // });
+      this.setState({
+        isEmailValid: false,
+        isPasswordValid: false,
+      });
     }
-    console.log(this.state.email);
-    console.log(this.state.password);
+    // console.log(this.state.email);
+    // console.log(this.state.password);
+  };
+
+  handleKeyUp = (e) => {
+    if (e.charCode === 13) {
+      this.handleSubmitBtn();
+    }
   };
 
   render() {
@@ -115,24 +123,30 @@ class LoginPage extends Component {
           >
             Sign in
           </Typography>
-          <label>Email address or Username</label>
-          <InputText
-            onTextChange={this.handleChange}
-            value={this.state.email}
-            placeholder="Your email or username"
-            type="text"
-            name="email"
-            valid={isEmailValid}
-          />
-          <label style={{ marginTop: "10px" }}>Password</label>
-          <InputText
-            onTextChange={this.handleChange}
-            value={this.state.password}
-            placeholder="Your password"
-            type="password"
-            name="password"
-            valid={isPasswordValid}
-          />
+          <FormControl>
+            <label>Email address or Username</label>
+            <InputText
+              onTextChange={this.handleChange}
+              onKeyPress={this.handleKeyUp}
+              value={this.state.email}
+              placeholder="Your email or username"
+              type="text"
+              name="email"
+              valid={isEmailValid}
+            />
+          </FormControl>
+          <FormControl>
+            <label style={{ marginTop: "10px" }}>Password</label>
+            <InputText
+              onTextChange={this.handleChange}
+              onKeyPress={this.handleKeyUp}
+              value={this.state.password}
+              placeholder="Your password"
+              type="password"
+              name="password"
+              valid={isPasswordValid}
+            />
+          </FormControl>
           <FormControlLabel
             control={
               <Checkbox

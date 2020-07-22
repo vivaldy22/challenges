@@ -4,10 +4,10 @@ import logo from "../assets/img/icon.png";
 import { NavLink } from "react-router-dom";
 
 const MyHeader = (props) => {
-  const { onLogin, onLogout, auth } = props;
+  const { onLogin, onLogout, auth, token } = props;
   return (
     <div>
-      {auth ? (
+      {auth && token ? (
         <Menu pointing color="brown">
           <Menu.Item>
             <Image size="mini" src={logo} />
@@ -27,11 +27,11 @@ const MyHeader = (props) => {
           {/*</Menu.Item>*/}
           <Menu.Menu position="right">
             <Menu.Item
-              name={auth ? "logout" : "login"}
-              onClick={auth ? onLogout : onLogin}
+              name={auth && token ? "logout" : "login"}
+              onClick={auth && token ? onLogout : onLogin}
             >
-              <Icon name={auth ? "log out" : "sign-in"} />
-              {auth ? "Logout" : "Login"}
+              <Icon name={auth && token ? "log out" : "sign-in"} />
+              {auth && token ? "Logout" : "Login"}
             </Menu.Item>
           </Menu.Menu>
         </Menu>

@@ -4,14 +4,14 @@ const baseURL = "/good";
 
 export const getProducts = async () => {
   const res = await axios.get("/products");
-  console.log(res);
+  // console.log(res);
 
   return await res.data;
 };
 
 export const createProducts = async (product) => {
   const res = await axios.post(baseURL, product);
-  console.log(res);
+  // console.log(res);
 
   return await res;
 };
