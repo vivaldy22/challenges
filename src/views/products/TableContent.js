@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Input, Table, Dropdown } from "semantic-ui-react";
 import { getTypes } from "../../api/Type";
-import DetailGoods from "./DetailGoods";
+import DetailProducts from "./DetailProducts";
 
 class TableContent extends Component {
   constructor(props) {
@@ -104,7 +104,7 @@ class TableContent extends Component {
           )}
         </Table.Cell>
         <Table.Cell style={{ width: "285px", textAlign: "right" }}>
-          <DetailGoods
+          <DetailProducts
             name={item.name}
             type={item.type}
             button={<Button>Details</Button>}

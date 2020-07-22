@@ -8,23 +8,19 @@ import {
 } from "react-router-dom";
 import MyHeader from "./MyHeader";
 import HomePage from "../views/home/HomePage";
-import GoodsPage from "../views/goods/GoodsPage";
-import WarehousePage from "../views/warehouse/WarehousePage";
+import ProductsPage from "../views/products/ProductsPage";
 import NotFound from "./NotFound";
-import TestingPage from "../views/testing/TestingPage";
 
 const routes = [
   { id: 1, path: "/home", component: HomePage },
-  { id: 2, path: "/goods", component: GoodsPage },
-  { id: 3, path: "/warehouses", component: WarehousePage },
-  { id: 4, path: "/testing", component: TestingPage },
+  { id: 2, path: "/products", component: ProductsPage },
+  // { id: 3, path: "/users", component: UsersPage },
 ];
 
 class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeMenu: "",
       auth: false,
     };
   }

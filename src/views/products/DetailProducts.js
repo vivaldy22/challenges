@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Modal, Label } from "semantic-ui-react";
 
-const DetailGoods = (props) => {
+const DetailProducts = (props) => {
   const { name, type, button } = props;
 
   return (
@@ -25,4 +25,4 @@ const DetailGoods = (props) => {
   );
 };
 
-export default DetailGoods;
+export default DetailProducts;

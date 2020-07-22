@@ -3,7 +3,6 @@ import "./App.css";
 import "./assets/css/style.css";
 import Nav from "./components/Nav";
 import { BrowserRouter } from "react-router-dom";
-import SamplePropTypes from "./views/SamplePropTypes";
 
 class App extends Component {
   render() {

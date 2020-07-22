@@ -17,18 +17,14 @@ const MyHeader = (props) => {
         </Menu.Item>
         {auth ? (
           <>
-            <Menu.Item as={NavLink} to="/goods" name="goods">
+            <Menu.Item as={NavLink} to="/products" name="products">
               <Icon name="sticky note outline" />
-              Goods
+              Products
             </Menu.Item>
-            <Menu.Item as={NavLink} to="/warehouses" name="warehouses">
-              <Icon name="warehouse" />
-              Warehouse
-            </Menu.Item>
-            <Menu.Item as={NavLink} to="/testing" name="testing">
-              <Icon name="telegram" />
-              Testing Menu
-            </Menu.Item>
+            {/*<Menu.Item as={NavLink} to="/users" name="users">*/}
+            {/*  <Icon name="user" />*/}
+            {/*  Users*/}
+            {/*</Menu.Item>*/}
           </>
         ) : (
           <></>

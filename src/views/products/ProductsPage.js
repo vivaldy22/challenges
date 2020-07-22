@@ -1,24 +1,25 @@
 import React, { Component } from "react";
 import { Button, Header, Table, Pagination, Icon } from "semantic-ui-react";
-import { getGoods } from "../../api/Goods";
+import { getProducts } from "../../api/Products";
 import TableContent from "./TableContent";
 import LoadingPage from "../../components/LoadingPage";
 
-class GoodsPage extends Component {
+class ProductsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoaded: false,
-      goods: [],
+      products: [],
     };
   }
 
-  getGoodsData = () => {
-    getGoods()
-      .then((goods) => {
+  getProductsData = () => {
+    getProducts()
+      .then((products) => {
         this.setState({
+          ...this.state,
           isLoaded: true,
-          goods,
+          products,
         });
       })
       .catch((e) => {
@@ -27,73 +28,62 @@ class GoodsPage extends Component {
   };
 
   componentDidMount = () => {
-    this.getGoodsData();
+    this.getProductsData();
   };
 
   handleSaveClick = (id, data) => {
-    this.state.goods.forEach((each, i) => {
+    this.state.products.forEach((each, i) => {
       if (each.id === id) {
-        this.state.goods.splice(i, 1, data);
+        this.state.products.splice(i, 1, data);
       }
     });
 
     this.setState({
-      goods: this.state.goods,
+      ...this.state,
+      products: this.state.products,
     });
   };
 
   render() {
-    const { isLoaded, goods } = this.state;
-    const showTableContent = goods.map((good, i) => {
+    const { isLoaded, products } = this.state;
+    const showTableContent = products.map((product, i) => {
       return (
         <TableContent
           key={i}
           index={i}
-          item={good}
+          item={product}
           onSaveClick={this.handleSaveClick}
         />
       );
     });
 
-    const showGoods = (
+    const showProducts = (
       <div className="table-container">
         <Table celled selectable striped>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell colSpan="4" textAlign={"center"}>
-                Goods Table
+                Products Table
               </Table.HeaderCell>
             </Table.Row>
             <Table.Row>
               <Table.HeaderCell className="table-no">No.</Table.HeaderCell>
-              <Table.HeaderCell>Good's Name</Table.HeaderCell>
-              <Table.HeaderCell>Type</Table.HeaderCell>
+              <Table.HeaderCell>Product's Name</Table.HeaderCell>
+              <Table.HeaderCell>Product's Price</Table.HeaderCell>
               <Table.HeaderCell>Actions</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>{showTableContent}</Table.Body>
         </Table>
-        <Pagination
-          defaultActivePage={5}
-          ellipsisItem={{
-            content: <Icon name="ellipsis horizontal" />,
-            icon: true,
-          }}
-          firstItem={{ content: <Icon name="angle double left" />, icon: true }}
-          lastItem={{ content: <Icon name="angle double right" />, icon: true }}
-          prevItem={{ content: <Icon name="angle left" />, icon: true }}
-          nextItem={{ content: <Icon name="angle right" />, icon: true }}
-          totalPages={10}
-        />
       </div>
     );
 
     if (!isLoaded) {
       return <LoadingPage />;
     } else {
-      return showGoods;
+      return showProducts;
     }
   }
 }
 
-export default GoodsPage;
+export default ProductsPage;
