@@ -63,7 +63,7 @@ class UsersPage extends Component {
         <Table celled selectable striped>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell colSpan="4" textAlign={"center"}>
+              <Table.HeaderCell colSpan="5" textAlign={"center"}>
                 Users Table
               </Table.HeaderCell>
             </Table.Row>

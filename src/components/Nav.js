@@ -37,6 +37,8 @@ class Nav extends Component {
       this.props.history.push({
         pathname: "/home",
       });
+    } else {
+      sessionStorage.clear();
     }
   }
 
@@ -58,6 +60,7 @@ class Nav extends Component {
     this.props.history.push({
       pathname: "/",
     });
+    sessionStorage.clear();
   };
 
   render() {
@@ -79,11 +82,7 @@ class Nav extends Component {
 
     return (
       <div className="background-image-home">
-        <MyHeader
-          onLogout={this.onLogout}
-          auth={this.state.auth}
-          token={this.state.token}
-        />
+        <MyHeader onLogout={this.onLogout} auth={this.state.auth} />
         <Switch>
           <Route
             path="/"
