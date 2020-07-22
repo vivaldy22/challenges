@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Button, Header, Table } from "semantic-ui-react";
+import { Button, Header, Table, Pagination, Icon } from "semantic-ui-react";
 import { getGoods } from "../../api/Goods";
 import TableContent from "./TableContent";
+import LoadingPage from "../../components/LoadingPage";
 
 class GoodsPage extends Component {
   constructor(props) {
@@ -72,11 +73,23 @@ class GoodsPage extends Component {
           </Table.Header>
           <Table.Body>{showTableContent}</Table.Body>
         </Table>
+        <Pagination
+          defaultActivePage={5}
+          ellipsisItem={{
+            content: <Icon name="ellipsis horizontal" />,
+            icon: true,
+          }}
+          firstItem={{ content: <Icon name="angle double left" />, icon: true }}
+          lastItem={{ content: <Icon name="angle double right" />, icon: true }}
+          prevItem={{ content: <Icon name="angle left" />, icon: true }}
+          nextItem={{ content: <Icon name="angle right" />, icon: true }}
+          totalPages={10}
+        />
       </div>
     );
 
     if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <LoadingPage />;
     } else {
       return showGoods;
     }

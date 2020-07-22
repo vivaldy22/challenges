@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
 import { getWarehouses } from "../../api/Warehouse";
+import LoadingPage from "../../components/LoadingPage";
 
 class WarehousePage extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class WarehousePage extends Component {
     );
 
     if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <LoadingPage />;
     } else {
       return showWarehouses;
     }
