@@ -1,15 +1,14 @@
 import React from "react";
 import { Container, Header, Button, Icon, Segment } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
 
 const HomePage = (props) => {
-  const { onArrowBtnClick } = props;
-
   return (
     <Segment textAlign="center" style={{ padding: "1em 0em" }} vertical>
       <Container text className="home-container">
         <Header
           as="h1"
-          content="Welcome to Goods and Warehouse Management App"
+          content="Welcome Admin!"
           style={{
             fontSize: "3em",
             fontWeight: "normal",
@@ -26,8 +25,8 @@ const HomePage = (props) => {
             marginTop: "1.5em",
           }}
         />
-        <Button name="goods" primary size="large" onClick={onArrowBtnClick}>
-          See Goods List
+        <Button as={NavLink} to="/users" name="users" primary size="large">
+          See Users List
           <Icon name="right arrow" />
         </Button>
       </Container>

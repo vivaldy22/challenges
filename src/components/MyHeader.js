@@ -17,14 +17,14 @@ const MyHeader = (props) => {
             Home
           </Menu.Item>
 
-          <Menu.Item as={NavLink} to="/products" name="products">
-            <Icon name="sticky note outline" />
-            Products
-          </Menu.Item>
-          {/*<Menu.Item as={NavLink} to="/users" name="users">*/}
-          {/*  <Icon name="user" />*/}
-          {/*  Users*/}
+          {/*<Menu.Item as={NavLink} to="/products" name="products">*/}
+          {/*  <Icon name="sticky note outline" />*/}
+          {/*  Products*/}
           {/*</Menu.Item>*/}
+          <Menu.Item as={NavLink} to="/users" name="users">
+            <Icon name="user" />
+            Users
+          </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item
               name={auth && token ? "logout" : "login"}

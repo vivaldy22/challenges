@@ -8,9 +8,9 @@ import {
   Typography,
   Link,
   FormControl,
-  InputLabel,
 } from "@material-ui/core";
 import { getAuth } from "../../api/Auth";
+import mySwal from "../../components/MySwal";
 
 const regexEmail = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
 
@@ -72,25 +72,39 @@ class LoginPage extends Component {
       });
     } else if (this.isEmailValid() && this.state.password) {
       if (this.state.email === "root" && this.state.password === "root") {
-        this.setState({
-          isEmailValid: true,
-          isPasswordValid: true,
-        });
-        alert("Login success");
-        this.props.onLogin();
-        const auth = {
-          username: this.state.email,
-          password: this.state.password,
-        };
-        getAuth(auth).then((res) => {
-          // console.log(res.data.token);
-          sessionStorage.setItem("token", res.data.token);
+        mySwal({
+          title: "Login success",
+          text: "Wow you made it!",
+          icon: "success",
+          confirmText: "Let's go to the next page!",
+          doNext: () => {
+            this.setState({
+              isEmailValid: true,
+              isPasswordValid: true,
+            });
+            this.props.onLogin();
+            const auth = {
+              username: this.state.email,
+              password: this.state.password,
+            };
+            getAuth(auth).then((res) => {
+              sessionStorage.setItem("token", res.data.token);
+            });
+          },
         });
       } else {
-        alert("Invalid login, please try again");
-        this.setState({
-          email: "",
-          password: "",
+        mySwal({
+          title: "Oops",
+          text:
+            "Looks like your username or password doesn't meant to be together!",
+          icon: "error",
+          confirmText: "Try Again! Don't give up yet!",
+          doNext: () => {
+            this.setState({
+              email: "",
+              password: "",
+            });
+          },
         });
       }
     } else {
@@ -99,8 +113,6 @@ class LoginPage extends Component {
         isPasswordValid: false,
       });
     }
-    // console.log(this.state.email);
-    // console.log(this.state.password);
   };
 
   handleKeyUp = (e) => {

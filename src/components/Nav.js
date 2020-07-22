@@ -11,11 +11,12 @@ import HomePage from "../views/home/HomePage";
 import ProductsPage from "../views/products/ProductsPage";
 import NotFound from "./NotFound";
 import LoginPage from "../views/login/LoginPage";
+import UsersPage from "../views/users/UsersPage";
 
 const routes = [
   { id: 1, path: "/home", component: HomePage },
-  { id: 2, path: "/products", component: ProductsPage },
-  // { id: 3, path: "/users", component: UsersPage },
+  // { id: 2, path: "/products", component: ProductsPage },
+  { id: 3, path: "/users", component: UsersPage },
 ];
 
 class Nav extends Component {
@@ -25,6 +26,18 @@ class Nav extends Component {
       auth: false,
       token: "",
     };
+  }
+
+  componentDidMount() {
+    if (sessionStorage.getItem("token") !== null) {
+      this.setState({
+        auth: true,
+        token: sessionStorage.getItem("token"),
+      });
+      this.props.history.push({
+        pathname: "/home",
+      });
+    }
   }
 
   onLogin = () => {
