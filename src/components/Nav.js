@@ -35,7 +35,7 @@ class Nav extends Component {
         token: sessionStorage.getItem("token"),
       });
       this.props.history.push({
-        pathname: "/home",
+        pathname: this.props.location.pathname,
       });
     } else {
       sessionStorage.clear();

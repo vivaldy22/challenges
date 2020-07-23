@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Input, Table, Dropdown } from "semantic-ui-react";
+import { Button, Input, Table, Dropdown, Icon } from "semantic-ui-react";
 import DetailUsers from "./DetailUsers";
 
 class TableContent extends Component {
@@ -85,31 +85,33 @@ class TableContent extends Component {
         </Table.Cell>
 
         <Table.Cell style={{ width: "285px", textAlign: "right" }}>
-          <DetailUsers
-            username={item.username}
-            age={item.age}
-            address={item.address}
-            button={<Button>Details</Button>}
-          />
-          <Button
-            onClick={
-              isEditing
-                ? () => {
-                    const data = {
-                      username: username,
-                      age: age,
-                      address: address,
-                    };
-                    this.handleEditClick();
-                    console.log(data);
-                    // onSaveClick(item.id, data);
-                  }
-                : this.handleEditClick
-            }
-          >
-            {isEditing ? "Save" : "Edit"}
-          </Button>
-          <Button>Remove</Button>
+          <Button.Group icon>
+            <DetailUsers
+              username={item.username}
+              age={item.age}
+              address={item.address}
+              button={<Button icon="info circle" />}
+            />
+            <Button
+              onClick={
+                isEditing
+                  ? () => {
+                      const data = {
+                        username: username,
+                        age: age,
+                        address: address,
+                      };
+                      this.handleEditClick();
+                      console.log(data);
+                      // onSaveClick(item.id, data);
+                    }
+                  : this.handleEditClick
+              }
+            >
+              {isEditing ? "Save" : "Edit"}
+            </Button>
+            <Button>Remove</Button>
+          </Button.Group>
         </Table.Cell>
       </Table.Row>
     );

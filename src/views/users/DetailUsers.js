@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Modal, Label } from "semantic-ui-react";
+import {Form, Input, Modal, Label, Button} from "semantic-ui-react";
 
 const DetailUsers = (props) => {
   const { username, age, address, button } = props;
@@ -22,6 +22,7 @@ const DetailUsers = (props) => {
               <Label>Address</Label>
               <Input value={address} />
             </Form.Field>
+            <Button color="primary">tes</Button>
           </Form>
         </Modal.Description>
       </Modal.Content>
