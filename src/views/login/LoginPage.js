@@ -177,6 +177,7 @@ class LoginPage extends Component {
             disableElevation
             className="button-submit"
             style={{ marginTop: "6px" }}
+            disabled={!(this.state.email && this.state.password)}
           >
             Sign in
           </Button>
