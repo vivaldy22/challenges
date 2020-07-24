@@ -31,17 +31,17 @@ class TableContent extends Component {
       confirmText: "Yes, I want to delete it",
       showCancel: true,
       doNext: () => {
-        console.log(id);
-        alert(id);
-        // deleteGoods(id)
-        //   .then((res) => {
-        //     console.log(res);
-        //     alert("Delete success");
-        //   })
-        //   .catch((e) => {
-        //     console.log(e);
-        //     alert("Error when deleting, see log");
-        //   });
+        // console.log(id);
+        // alert(id);
+        deleteGoods(id)
+          .then((res) => {
+            console.log(res);
+            alert("Delete success");
+          })
+          .catch((e) => {
+            console.log(e);
+            alert("Error when deleting, see log");
+          });
       },
     });
   };
