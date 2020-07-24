@@ -1,22 +1,14 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-  withRouter,
-} from "react-router-dom";
+import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import MyHeader from "./MyHeader";
 import HomePage from "../views/home/HomePage";
-import ProductsPage from "../views/products/ProductsPage";
+import GoodsPage from "../views/goods/GoodsPage";
 import NotFound from "./NotFound";
 import LoginPage from "../views/login/LoginPage";
-import UsersPage from "../views/users/UsersPage";
 
 const routes = [
   { id: 1, path: "/home", component: HomePage },
-  // { id: 2, path: "/products", component: ProductsPage },
-  { id: 3, path: "/users", component: UsersPage },
+  { id: 2, path: "/goods", component: GoodsPage },
 ];
 
 class Nav extends Component {
@@ -24,15 +16,13 @@ class Nav extends Component {
     super(props);
     this.state = {
       auth: false,
-      token: "",
     };
   }
 
   componentDidMount() {
-    if (sessionStorage.getItem("token") !== null) {
+    if (sessionStorage.getItem("auth") !== null) {
       this.setState({
         auth: true,
-        token: sessionStorage.getItem("token"),
       });
       this.props.history.push({
         pathname: this.props.location.pathname,
@@ -45,8 +35,8 @@ class Nav extends Component {
   onLogin = () => {
     this.setState({
       auth: true,
-      token: sessionStorage.getItem("token"),
     });
+    sessionStorage.setItem("auth", "loggedIn");
     this.props.history.push({
       pathname: "/home",
     });
@@ -55,7 +45,6 @@ class Nav extends Component {
   onLogout = () => {
     this.setState({
       auth: false,
-      token: "",
     });
     this.props.history.push({
       pathname: "/",
@@ -88,7 +77,11 @@ class Nav extends Component {
             path="/"
             exact
             render={(props) => {
-              return <LoginPage onLogin={this.onLogin} />;
+              if (sessionStorage.getItem("auth") === "loggedIn") {
+                this.onLogin();
+              } else {
+                return <LoginPage onLogin={this.onLogin} />;
+              }
             }}
           />
           {routeList}

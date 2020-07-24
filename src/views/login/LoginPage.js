@@ -9,7 +9,6 @@ import {
   Link,
   FormControl,
 } from "@material-ui/core";
-import { getAuth } from "../../api/Auth";
 import mySwal from "../../components/MySwal";
 
 const regexEmail = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
@@ -24,6 +23,12 @@ class LoginPage extends Component {
       isEmailValid: true,
       isPasswordValid: true,
     };
+  }
+
+  componentDidMount() {
+    if (sessionStorage.getItem("auth") === "loggedIn") {
+      this.props.onLogin();
+    }
   }
 
   handleChange = (e) => {
@@ -83,13 +88,6 @@ class LoginPage extends Component {
               isPasswordValid: true,
             });
             this.props.onLogin();
-            const auth = {
-              username: this.state.email,
-              password: this.state.password,
-            };
-            getAuth(auth).then((res) => {
-              sessionStorage.setItem("token", res.data.token);
-            });
           },
         });
       } else {

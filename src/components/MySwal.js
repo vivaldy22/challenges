@@ -10,6 +10,7 @@ const mySwal = (props) => {
     confirmText,
     allowOutsideClick,
     doNext,
+    showCancel,
   } = props;
 
   Swal.fire({
@@ -19,6 +20,8 @@ const mySwal = (props) => {
     confirmButtonColor: confirmColor || "#3085d6",
     confirmButtonText: confirmText || "OK",
     allowOutsideClick: allowOutsideClick || false,
+    showCancelButton: showCancel,
+    cancelButtonColor: "#d33",
   }).then((result) => {
     if (result.value) {
       doNext();

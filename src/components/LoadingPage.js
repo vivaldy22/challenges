@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Dimmer, Loader, Image } from "semantic-ui-react";
+import { Segment, Dimmer, Loader } from "semantic-ui-react";
 
 class LoadingPage extends Component {
   render() {

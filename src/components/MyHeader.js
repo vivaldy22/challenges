@@ -21,9 +21,9 @@ const MyHeader = (props) => {
           {/*  <Icon name="sticky note outline" />*/}
           {/*  Products*/}
           {/*</Menu.Item>*/}
-          <Menu.Item as={NavLink} to="/users" name="users">
-            <Icon name="user" />
-            Users
+          <Menu.Item as={NavLink} to="/goods" name="goods">
+            <Icon name="sticky note" />
+            Goods
           </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item
