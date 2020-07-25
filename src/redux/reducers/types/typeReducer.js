@@ -1,15 +1,9 @@
 const initialState = {
-  goods: [],
   types: [],
 };
 
-const goods = (state = initialState, action) => {
+const types = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_GOODS":
-      return {
-        ...state,
-        goods: action.goods,
-      };
     case "SET_TYPES":
       return {
         ...state,
@@ -20,4 +14,4 @@ const goods = (state = initialState, action) => {
   }
 };
 
-export default goods;
+export default types;

@@ -1,22 +1,23 @@
 import React, { Component } from "react";
 import { Button, Table } from "semantic-ui-react";
-import TableContentGoods from "./TableContentGoods";
+import TableContentWarehouse from "./TableContentWarehouse";
 import LoadingPage from "../../components/LoadingPage";
-import DetailGoods from "./DetailGoods";
+import DetailWarehouse from "./DetailWarehouse";
 import { getGoods } from "../../api/Goods";
 import { getTypes } from "../../api/Type";
 import { connect } from "react-redux";
+import { getWarehouses } from "../../api/Warehouses";
 
-class GoodsPage extends Component {
+class WarehousesPage extends Component {
   state = {
     isLoaded: false,
     open: false,
   };
 
   getAllData = () => {
-    getGoods()
-      .then((goods) => {
-        this.props.setGoodData(goods);
+    getWarehouses()
+      .then((warehouses) => {
+        this.props.setWarehouseData(warehouses);
 
         getTypes()
           .then((types) => {
@@ -52,7 +53,7 @@ class GoodsPage extends Component {
 
   render() {
     const { isLoaded, open } = this.state;
-    const { goods, types } = this.props;
+    const { warehouses, types } = this.props;
 
     if (!isLoaded) {
       return <LoadingPage />;
@@ -63,12 +64,12 @@ class GoodsPage extends Component {
         value: type.id,
       }));
 
-      const showTableContent = goods.map((good, i) => {
+      const showTableContent = warehouses.map((warehouse, i) => {
         return (
-          <TableContentGoods
+          <TableContentWarehouse
             key={i}
             index={i}
-            item={good}
+            item={warehouse}
             options={typeOptions}
           />
         );
@@ -77,7 +78,7 @@ class GoodsPage extends Component {
       return (
         <div className="table-container">
           <div style={{ float: "right", marginBottom: "1em" }}>
-            <DetailGoods
+            <DetailWarehouse
               name=""
               type={typeOptions[0].text}
               typeID={typeOptions[0].value}
@@ -116,15 +117,15 @@ class GoodsPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    goods: state.goodsReduc.goods,
+    warehouses: state.warehouseReduc.warehouses,
     types: state.typesReduc.types,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setGoodData: (goods) => {
-      dispatch({ type: "SET_GOODS", goods });
+    setWarehouseData: (goods) => {
+      dispatch({ type: "SET_WAREHOUSES", goods });
     },
     setTypesData: (types) => {
       dispatch({ type: "SET_TYPES", types });
@@ -132,4 +133,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GoodsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(WarehousesPage);

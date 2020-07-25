@@ -11,7 +11,6 @@ class App extends Component {
         <BrowserRouter>
           <Nav />
         </BrowserRouter>
-        {/*<SamplePropTypes name={<div>asd</div>} />*/}
       </div>
     );
   }

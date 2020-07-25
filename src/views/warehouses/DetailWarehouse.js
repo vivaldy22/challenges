@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Input, Modal, Label, Button, Dropdown } from "semantic-ui-react";
 import { createGoods, updateGoods } from "../../api/Goods";
 
-class DetailGoods extends Component {
+class DetailWarehouse extends Component {
   state = {
     good: this.props.name,
     type: this.props.type,
@@ -116,4 +116,4 @@ class DetailGoods extends Component {
   }
 }
 
-export default DetailGoods;
+export default DetailWarehouse;

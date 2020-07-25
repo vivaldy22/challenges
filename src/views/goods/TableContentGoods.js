@@ -4,7 +4,7 @@ import DetailGoods from "./DetailGoods";
 import { deleteGoods } from "../../api/Goods";
 import mySwal from "../../components/MySwal";
 
-class TableContent extends Component {
+class TableContentGoods extends Component {
   state = {
     isLoaded: false,
     error: "",
@@ -31,8 +31,6 @@ class TableContent extends Component {
       confirmText: "Yes, I want to delete it",
       showCancel: true,
       doNext: () => {
-        // console.log(id);
-        // alert(id);
         deleteGoods(id)
           .then((res) => {
             console.log(res);
@@ -42,13 +40,14 @@ class TableContent extends Component {
             console.log(e);
             alert("Error when deleting, see log");
           });
+        window.location.reload(false);
       },
     });
   };
 
   render() {
-    const { onSaveClick, key, index, item, options } = this.props;
-    const { isEditing, good, typeID, open } = this.state;
+    const { key, index, item, options } = this.props;
+    const { open } = this.state;
 
     return (
       <Table.Row key={key}>
@@ -88,4 +87,4 @@ class TableContent extends Component {
   }
 }
 
-export default TableContent;
+export default TableContentGoods;
