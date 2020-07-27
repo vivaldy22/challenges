@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import MyHeader from "./MyHeader";
 import HomePage from "../views/home/HomePage";
@@ -11,90 +11,74 @@ const routes = [
   { id: 2, path: "/goods", component: GoodsPage },
 ];
 
-class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      auth: false,
-    };
-  }
+const Nav = (props) => {
+  const [auth, setAuth] = useState(false);
 
-  componentDidMount() {
+  useEffect(() => {
     if (sessionStorage.getItem("auth") !== null) {
-      this.setState({
-        auth: true,
-      });
-      this.props.history.push({
-        pathname: this.props.location.pathname,
+      setAuth(true);
+      props.history.push({
+        pathname: props.location.pathname,
       });
     } else {
-      sessionStorage.clear();
+      sessionStorage.removeItem("auth");
     }
-  }
+  });
 
-  onLogin = () => {
-    this.setState({
-      auth: true,
-    });
+  const onLogin = () => {
+    setAuth(true);
     sessionStorage.setItem("auth", "loggedIn");
-    this.props.history.push({
+    props.history.push({
       pathname: "/home",
     });
   };
 
-  onLogout = () => {
-    this.setState({
-      auth: false,
-    });
-    this.props.history.push({
+  const onLogout = () => {
+    setAuth(false);
+    props.history.push({
       pathname: "/",
     });
-    sessionStorage.clear();
+    sessionStorage.removeItem("auth");
   };
 
-  render() {
-    const routeList = routes.map((route) => {
-      return (
+  const routeList = routes.map((route) => {
+    return (
+      <Route
+        key={route.id}
+        path={route.path}
+        render={(props) => {
+          return auth ? <route.component {...props} /> : <Redirect to="/" />;
+        }}
+      />
+    );
+  });
+
+  return (
+    <div className="background-image-home">
+      <MyHeader onLogout={onLogout} auth={auth} />
+      <Switch>
         <Route
-          key={route.id}
-          path={route.path}
+          path="/"
+          exact
           render={(props) => {
-            return this.state.auth ? (
-              <route.component {...props} />
-            ) : (
-              <Redirect to="/" />
-            );
+            if (sessionStorage.getItem("auth") === "loggedIn") {
+              onLogin();
+            } else {
+              return <LoginPage onLogin={onLogin} />;
+              return <LoginPage onLogin={onLogin} />;
+            }
           }}
         />
-      );
-    });
-
-    return (
-      <div className="background-image-home">
-        <MyHeader onLogout={this.onLogout} auth={this.state.auth} />
-        <Switch>
-          <Route
-            path="/"
-            exact
-            render={(props) => {
-              if (sessionStorage.getItem("auth") === "loggedIn") {
-                this.onLogin();
-              } else {
-                return <LoginPage onLogin={this.onLogin} />;
-              }
-            }}
-          />
-          {routeList}
-          <Route
-            path="*"
-            render={(props) => {
-              return <NotFound />;
-            }}
-          />
-        </Switch>
-      </div>
-    );
-  }
-}
+        {routeList}
+        <Route
+          path="*"
+          render={(props) => {
+            return <NotFound />;
+          }}
+        />
+      </Switch>
+    </div>
+  );
+};
 
 export default withRouter(Nav);

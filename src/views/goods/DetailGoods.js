@@ -1,119 +1,114 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Modal, Label, Button, Dropdown } from "semantic-ui-react";
 import { createGoods, updateGoods } from "../../api/Goods";
 
-class DetailGoods extends Component {
-  state = {
-    good: this.props.name,
-    type: this.props.type,
-    typeID: this.props.typeID,
-    isEditing: false,
+const DetailGoods = (props) => {
+  const initialState = {
+    good: props.name || "",
+    type: props.type || props.options[0].text,
+    typeID: props.typeID || props.options[0].value,
   };
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
+  const [userInput, setUserInput] = useState(initialState);
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleNameChange = (e) => {
+    setUserInput({
+      ...userInput,
+      good: e.target.value,
     });
   };
 
-  handleTypeChange = (e, { value }) => {
-    this.setState({
-      ...this.state,
+  const handleTypeChange = (e, { value }) => {
+    setUserInput({
+      ...userInput,
       typeID: value,
     });
-    console.log("typeID ", this.state.typeID);
   };
 
-  handleEditClick = () => {
-    this.setState({
-      isEditing: !this.state.isEditing,
-    });
+  const handleEditClick = () => {
+    setIsEditing(!isEditing);
   };
 
-  handleSaveClick = () => {
+  const handleSaveClick = () => {
     const data = {
-      name: this.state.good,
-      type: this.state.typeID,
+      name: userInput.good,
+      type: userInput.typeID,
     };
-    if (this.props.btnName === "Add New") {
-      createGoods(data).then((res) => {
-        console.log(res);
-        alert("Insert success");
-      });
-    } else if (this.props.btnName === "Edit") {
-      updateGoods(this.props.goodID, data).then((res) => {
-        console.log(res);
-        alert("Update success");
-      });
+    console.log(data);
+    if (data.name && data.type) {
+      if (props.btnName === "Add New") {
+        createGoods(data).then((res) => {
+          alert("Insert success");
+          window.location.reload(false);
+        });
+      } else if (props.btnName === "Edit") {
+        updateGoods(props.goodID, data).then((res) => {
+          alert("Update success");
+          window.location.reload(false);
+        });
+      }
+    } else {
+      alert("Input must not be empty");
     }
-    this.handleEditClick();
-    this.resetState();
-    window.location.reload(false);
   };
 
-  resetState = () => {
-    this.setState({
-      name: "",
-      isEditing: false,
-    });
+  const resetState = () => {
+    setUserInput(initialState);
+    setIsEditing(false);
   };
 
-  render() {
-    const { button, options, open, onClose, btnName } = this.props;
-    const { good, type, typeID, isEditing } = this.state;
+  const { button, options, open, onClose, btnName } = props;
 
-    return (
-      <Modal open={open} trigger={button}>
-        <Modal.Header>Goods Data</Modal.Header>
-        <Modal.Content>
-          <Modal.Description>
-            <Form>
-              <Form.Field>
-                <Label>Goods Name</Label>
-                <Input
-                  name="good"
-                  disabled={!isEditing}
-                  value={good}
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-              <Form.Field>
-                <Label>Goods Type</Label>
-                <Dropdown
-                  disabled={!isEditing}
-                  fluid
-                  selection
-                  options={options}
-                  defaultValue={typeID}
-                  defaultSelectedLabel={type}
-                  onChange={this.handleTypeChange}
-                />
-              </Form.Field>
-              <div>
-                <Button
-                  onClick={
-                    isEditing ? this.handleSaveClick : this.handleEditClick
-                  }
-                  color="green"
-                >
-                  {isEditing ? "Save" : btnName}
-                </Button>
-                <Button
-                  onClick={() => {
-                    onClose();
-                    this.resetState();
-                  }}
-                  color="red"
-                >
-                  Cancel
-                </Button>
-              </div>
-            </Form>
-          </Modal.Description>
-        </Modal.Content>
-      </Modal>
-    );
-  }
-}
+  return (
+    <Modal open={open} trigger={button}>
+      <Modal.Header>Goods Data</Modal.Header>
+      <Modal.Content>
+        <Modal.Description>
+          <Form>
+            <Form.Field>
+              <Label>Goods Name</Label>
+              <Input
+                name="good"
+                disabled={!isEditing}
+                value={userInput.good}
+                onChange={handleNameChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <Label>Goods Type</Label>
+              <Dropdown
+                disabled={!isEditing}
+                fluid
+                selection
+                options={options}
+                defaultValue={userInput.typeID}
+                onChange={handleTypeChange}
+              />
+            </Form.Field>
+            <div>
+              <Button
+                onClick={isEditing ? handleSaveClick : handleEditClick}
+                color="green"
+              >
+                {isEditing ? "Save" : btnName}
+              </Button>
+              <Button
+                onClick={() => {
+                  onClose();
+                  resetState();
+                }}
+                color="red"
+              >
+                Cancel
+              </Button>
+            </div>
+          </Form>
+        </Modal.Description>
+      </Modal.Content>
+    </Modal>
+  );
+};
 
 export default DetailGoods;
