@@ -6,13 +6,19 @@ import DetailGoods from "./DetailGoods";
 import { getGoods } from "../../api/Goods";
 import { getTypes } from "../../api/Type";
 import { connect } from "react-redux";
+import Pagination from "../../components/Pagination";
+import PaginationSemantic from "../../components/PaginationSemantic";
 
 const GoodsPage = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [open, setOpen] = useState(false);
+  const [keyword, setKeyword] = useState("");
+  const [offset, setOffset] = useState(0);
+  // const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(3);
 
-  const getAllData = () => {
-    getGoods()
+  const getAllData = (offset = 0) => {
+    getGoods("", offset, postsPerPage)
       .then((goods) => {
         props.setGoodData(goods);
 
@@ -39,8 +45,8 @@ const GoodsPage = (props) => {
   };
 
   useEffect(() => {
-    getAllData();
-  }, [isLoaded]);
+    getAllData(offset);
+  }, [offset]);
 
   const { goods, types } = props;
 
@@ -53,16 +59,28 @@ const GoodsPage = (props) => {
       value: type.id,
     }));
 
+    // const indexOfLastPost = currentPage * postsPerPage;
+    // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    //
+    // const currentPosts = goods.slice(indexOfFirstPost, indexOfLastPost);
+
     const showTableContent = goods.map((good, i) => {
       return (
         <TableContentGoods
           key={i}
-          index={i}
+          index={i + offset}
           item={good}
           options={typeOptions}
         />
       );
     });
+
+    // const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const handlePaginationClick = (pageNumber) => {
+      setOffset(pageNumber * postsPerPage - postsPerPage);
+      // setCurrentPage(pageNumber);
+      setIsLoaded(false);
+    };
 
     return (
       <div className="table-container">
@@ -98,6 +116,14 @@ const GoodsPage = (props) => {
           </Table.Header>
           <Table.Body>{showTableContent}</Table.Body>
         </Table>
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={15}
+          // paginate={paginate}
+          offset={offset}
+          getAll={getAllData}
+          handlePaginationClick={handlePaginationClick}
+        />
       </div>
     );
   }

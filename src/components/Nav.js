@@ -23,7 +23,7 @@ const Nav = (props) => {
     } else {
       sessionStorage.removeItem("auth");
     }
-  });
+  }, []);
 
   const onLogin = () => {
     setAuth(true);

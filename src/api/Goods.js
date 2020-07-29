@@ -2,9 +2,11 @@ import axios from "axios";
 
 const baseURL = "/good";
 
-export const getGoods = async () => {
-  const res = await axios.get("/goods");
-  // console.log(res);
+export const getGoods = async (keyword = "", offset = "0", limit = "0") => {
+  const queryParam = `/goods?keyword=${keyword}&offset=${offset}&limit=${limit}`;
+  console.log(queryParam);
+  const res = await axios.get(queryParam);
+  console.log(res);
 
   return await res.data.result;
 };
