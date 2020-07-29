@@ -3,7 +3,7 @@ import { Button, Table } from "semantic-ui-react";
 import TableContentGoods from "./TableContentGoods";
 import LoadingPage from "../../components/LoadingPage";
 import DetailGoods from "./DetailGoods";
-import { getGoods } from "../../api/Goods";
+import { getGoods, getTotalGoods } from "../../api/Goods";
 import { getTypes } from "../../api/Type";
 import { connect } from "react-redux";
 import Pagination from "../../components/Pagination";
@@ -16,6 +16,17 @@ const GoodsPage = (props) => {
   const [offset, setOffset] = useState(0);
   // const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(3);
+
+  const getTotalData = () => {
+    getTotalGoods()
+      .then((total) => {
+        props.setTotalData(total);
+        setIsLoaded(true);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   const getAllData = (offset = 0) => {
     getGoods("", offset, postsPerPage)
@@ -46,9 +57,10 @@ const GoodsPage = (props) => {
 
   useEffect(() => {
     getAllData(offset);
+    getTotalData();
   }, [offset]);
 
-  const { goods, types } = props;
+  const { goods, types, total } = props;
 
   if (!isLoaded) {
     return <LoadingPage />;
@@ -118,7 +130,7 @@ const GoodsPage = (props) => {
         </Table>
         <Pagination
           postsPerPage={postsPerPage}
-          totalPosts={15}
+          totalPosts={total}
           // paginate={paginate}
           offset={offset}
           getAll={getAllData}
@@ -133,6 +145,7 @@ const mapStateToProps = (state) => {
   return {
     goods: state.goodsReduc.goods,
     types: state.typesReduc.types,
+    total: state.goodsReduc.total,
   };
 };
 
@@ -143,6 +156,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setTypesData: (types) => {
       dispatch({ type: "SET_TYPES", types });
+    },
+    setTotalData: (total) => {
+      dispatch({ type: "SET_TOTAL", total });
     },
   };
 };

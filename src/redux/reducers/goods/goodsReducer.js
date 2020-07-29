@@ -1,5 +1,6 @@
 const initialState = {
   goods: [],
+  total: 0,
 };
 
 const goods = (state = initialState, action) => {
@@ -8,6 +9,11 @@ const goods = (state = initialState, action) => {
       return {
         ...state,
         goods: action.goods,
+      };
+    case "SET_TOTAL":
+      return {
+        ...state,
+        total: action.total,
       };
     default:
       return state;

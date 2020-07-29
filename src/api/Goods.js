@@ -11,6 +11,12 @@ export const getGoods = async (keyword = "", offset = "0", limit = "0") => {
   return await res.data.result;
 };
 
+export const getTotalGoods = async () => {
+  const res = await axios.get("/goods/total");
+
+  return await res.data.result.total;
+};
+
 export const createGoods = async (good) => {
   const res = await axios.post(baseURL, good);
   // console.log(res);
